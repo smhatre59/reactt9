@@ -31,6 +31,7 @@ var activeKey;
 var current;
 var lastKey = 0;
 var longpress = 0;
+var finalstring="";
 export default class T9 extends React.Component {
   /*
   Initailly the results in both inputs are blank
@@ -64,6 +65,7 @@ export default class T9 extends React.Component {
    	current = 0;
      self.setState({
        finalresult:result,
+       tempresult:""
      });
 	}
   }
@@ -107,7 +109,7 @@ export default class T9 extends React.Component {
           var mouseUpTime = mouseUpDate.getTime();
           if(mouseUpTime - mouseDownTime > threshold){
               // Code you want called after being triggered.
-              var activeKey = characterarray[1];
+              var activeKey = characterarray[i];
               var result = self.state.finalresult;
                   result +=  activeKey[0];
               self.setState({
@@ -128,8 +130,7 @@ export default class T9 extends React.Component {
       <table id="phone">
     <tr>
         <td colSpan="3">
-            <input type="text" id="result" value={this.state.finalresult}/>
-              <input type="text" id="result" value={this.state.tempresult}/>
+            <input type="text" id="result" value={this.state.finalresult+this.state.tempresult}/>
         </td>
     </tr>
     <tr>
